@@ -1,0 +1,45 @@
+m,meters,Unit of length that is approximately equal to 3 feet,555556,1,T
+g,grams,Unit of mass    one-thousandth of a kilogram or 0.0022 pounds,555565,1,T
+s,seconds,Common unit of time,555655,1,T
+A,Amperes,Unit of current or how many electrons are moving through a wire per second,556555,1,T
+K,Kelvins,Unit of temperature where 0K is the smallest temperature physically possible,565555,1,T
+cd,Candelas,Unit of light emmision,655555,1,T
+N,Newtons,Unit of force or weight 1N = 0.2248lbs,555366,1000,T
+Pa,Pascals,Unit of pressure equal to 1N per square-meter,555364,1000,T
+J,Joules,Unit of energy equivalent to 1Nm,555367,1000,T
+W,Watt,Power unit equal to 1J/s,555267,1000,T
+V,Volt,unit of electrical potential,554267,1000,T
+Ohm,Ohms,units of electrical resistance,553267,1000,T
+T,Teslas,,554365,1000,T
+Wb,Webers,,554367,1000,T
+F,Farads,,557943,0.001,T
+H,Henries,,553367,0.001,T
+S,Siemens,,557843,0.001,T
+C,Coloumbs,,556655,1,T
+mn,Minutes,,555655,60,F
+hr,Hours,,555655,3600,F
+L,Liters,,555558,0.001,F
+tonne,Metric Tonnes,,555565,1000000,F
+atm,Atmospheres,,555364, 101325000,F
+ly,Light Years,,555556,9460700000000000,F
+lh,Light Hours,,555556,1079252848800,F
+lm,Light Minutes,,555556,17987547480,F
+ls,Light Seconds,,555556,299792458,F
+yr,Years,,555655,31556952,F
+pc,Parsecs,,555556,30857000000000000,F
+AU,Astronomical Units,,555556,149597870700,F
+GeoM,Earth Masses,,555565,5972370000000000000000000000,F
+solM,Solar Masses,,555565,1988470000000000000000000000000000,F
+GeoR,Earth Radii,,555556,6378100,F
+solR,Solar Radii,,555556,695700000,F
+lbs,Pounds,,555366,4448.2216282509,F
+in,Inches,,555556,0.0254,F
+ft,Feet,,555556,0.3048,F
+yd,Yards,,555556,0.9144,F
+mi,Miles,,555556,1609.344,F
+psi,Pounds per square-inch,,555364,6894757,F
+acre,Acres,,555557,4046.8564224,F
+c,Cups,,555558,0.00023658824,F
+pt,Pints,,555558,0.00047317648,F
+qt,Quarts,,555558,0.00094635296,F
+gal,Gallons,,555558,0.00378541184,F
