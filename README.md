@@ -11,12 +11,12 @@ To terminate the program, press ctrl+c.
 Provided in each release are files that allow you to execute PhysiCalc without first opening the command line or terminal.
 
 ### Windows
-To run on Windows, download the physicalc-x.x.x.jar as well as the PhysiCalcBatch.bat.
+To run on Windows, download the physicalc-x.x.x.jar as well as the PhysiCalc.bat.
 Place both of these files in the same directory.
 Double-clicking on the batch file will automatically open the command prompt and run the program.
 
 ### Macintosh
-To run on Mac, download the physicalc-x.x.x.jar and PhysiCalcBash.
+To run on Mac, download the physicalc-x.x.x.jar and PhysiCalc.sh.
 Place both files on the desktop, and double-click on the bash file
 to run PhysiCalc.
 
