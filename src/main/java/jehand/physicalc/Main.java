@@ -12,6 +12,7 @@ public class Main {
     }
 
     private Map<String, String> helpText = ResourceLoader.loadTextResources("/help.txt");
+    private Map<String, String> licenseText = ResourceLoader.loadTextResources("/inAppLicense.txt");
 
     private Map<String, UncertainValue> values = new HashMap<>();
 
@@ -33,13 +34,20 @@ public class Main {
         values.put("m_u", new UncertainValue(0.000000000000000000000001660539066605, 0.0000000003, Units.parse("g"), true, false));
 
         System.out.println("PhysiCalc 1.0\n");
-        System.out.println("Type \"help\" for more information.\n");
+        System.out.println(licenseText.get("onStart"));
+        System.out.println();
+        System.out.println("Type \"help\" for information on usage.\n");
 
         Scanner scan = new Scanner(System.in);
 
         while(true){
 
             String line = scan.nextLine();
+
+            if(licenseText.containsKey(line)){
+                System.out.println(licenseText.get(line));
+                continue;
+            }
 
             if(line.equals("list")){
 
