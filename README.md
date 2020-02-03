@@ -22,7 +22,7 @@ Place both files on the desktop, and double-click on the bash file
 to run PhysiCalc.
 
 *NOTE: This might not work because of Apple's built-in protections
-thinking it is malware. I am trying to find a way around it.*
+thinking it is malware. I am trying to find a way around it. Until then, just use the command line directly as described under Execution.*
 
 ## Opening the help page
 After launching PhysiCalc, type "help" and press enter. PhysiCalc should bring up instructions to get started.
