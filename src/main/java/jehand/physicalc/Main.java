@@ -1,3 +1,23 @@
+
+/*
+ *  Copyright ©, 2020, Joseph E. Hand
+ *
+ *  This file is part of PhysiCalc.
+ *
+ *  PhysiCalc is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  PhysiCalc is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with PhysiCalc.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package jehand.physicalc;
 
 import java.util.*;
@@ -11,8 +31,8 @@ public class Main {
         new jehand.physicalc.Main().run();
     }
 
-    private Map<String, String> helpText = ResourceLoader.loadTextResources("/help.txt");
-    private Map<String, String> licenseText = ResourceLoader.loadTextResources("/inAppLicense.txt");
+    private Map<String, String> helpText = ResourceLoader.loadTextResources("/assets/help.txt");
+    private Map<String, String> licenseText = ResourceLoader.loadTextResources("/assets/inAppLicense.txt");
 
     private Map<String, UncertainValue> values = new HashMap<>();
 
@@ -33,7 +53,7 @@ public class Main {
         values.put("k", new UncertainValue(16021766340000000000.0, 0.0, Units.parse("J/K")));
         values.put("m_u", new UncertainValue(0.000000000000000000000001660539066605, 0.0000000003, Units.parse("g"), true, false));
 
-        System.out.println("PhysiCalcBash 1.0.0\n");
+        System.out.println("PhysiCalc 1.0.0\n");
         System.out.println(licenseText.get("onStart"));
         System.out.println();
         System.out.println("Type \"help\" for information on usage.\n");

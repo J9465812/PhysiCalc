@@ -1,3 +1,23 @@
+
+/*
+ *  Copyright ©, 2020, Joseph E. Hand
+ *
+ *  This file is part of PhysiCalc.
+ *
+ *  PhysiCalc is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  PhysiCalc is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with PhysiCalc.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package jehand.physicalc;
 
 import java.util.*;
@@ -24,7 +44,7 @@ public class Units {
 
     static {
 
-        String[][] units = ResourceLoader.loadCSVObjectFormat("/units.txt");
+        String[][] units = ResourceLoader.loadCSVObjectFormat("/assets/units.txt");
 
         StringBuilder descriptions = new StringBuilder();
         descriptions.append("\n" + String.format("%25s  %-15s%s", "Name:", "Abbreviation:", "Description:"));
