@@ -1,1 +1,1 @@
-java -jar physicalc-1.0.0.jar
+java -jar physicalc-1.0.1.jar
