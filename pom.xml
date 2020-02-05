@@ -4,7 +4,7 @@
     <groupId>jehand</groupId>
     <artifactId>physicalc</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>PhysiCalc</name>
     <url>http://maven.apache.org</url>
     <properties>
