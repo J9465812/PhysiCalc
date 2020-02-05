@@ -26,8 +26,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Static class for loading text resources.
+ */
+
 public class ResourceLoader {
 
+
+    /**
+     * Loads key value pairs from a text file.
+     *
+     * Colons (:) separate keys from values.
+     * Newline characters separate pairs, except when followed by a hash-mark (#).
+     * Pipes (|) can be used to insert newlines.
+     *
+     * @param fileName The file to be opened and read.
+     * @return The key-value pairs extracted from the file.
+     */
 
     public static HashMap<String, String> loadTextResources(String fileName){
 
@@ -73,6 +88,13 @@ public class ResourceLoader {
 
         return resources;
     }
+
+    /**
+     * Loads comma-separated-values from a file into a two-dimensional array.
+     *
+     * @param fileName The file to be read and parsed.
+     * @return The array generated form the file.
+     */
 
     public static String[][] loadCSVObjectFormat(String fileName){
 

@@ -24,24 +24,38 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class that represents the units of a quantity.
+ */
+
 public class Units {
 
-    // 0 = m
-    // 1 = g
-    // 2 = s
-    // 3 = A
-    // 4 = K
-    // 5 = cd
-
+    /**
+     * Basic Units used to represent all others (with a few exceptions).
+     */
     private static final String[] baseUnits = {"m", "g", "s", "A", "K", "cd"};
 
+    /**
+     * List of all metric units. Only these will be used by default to print out values.
+     */
     private static final Map<String, Units> standardUnits = new HashMap<>();
+
+    /**
+     * List of all units supported.
+     */
     private static final Map<String, Units> allUnits = new HashMap<>();
 
+    /**
+     * Table of all units with information. Currently inaccessible.
+     */
     private static final String unitDescriptions;
 
+    /**
+     * Regex with all unit abbreviations.
+     */
     private static final String unitMatch;
 
+    // Initialize unit lists, descriptions, and matcher from units.txt file.
     static {
 
         String[][] units = ResourceLoader.loadCSVObjectFormat("/assets/units.txt");
@@ -62,6 +76,14 @@ public class Units {
         unitMatch = match.substring(1);
     }
 
+    /**
+     * Adds specified unit to lists.
+     *
+     * @param abr the abbreviation used in the program
+     * @param value the actual dimensions being used
+     * @param factor the ration between this unit and the MGS standard unit of the same type
+     * @param isMetric Should this be added to the metric units list?
+     */
     private static void addUnit(String abr, int value, double factor, boolean isMetric){
 
         Units u = new Units(value, factor);
@@ -73,7 +95,22 @@ public class Units {
         }
     }
 
+    /**
+     * The dimensions being represented.
+     *
+     * Each digit is the power of the corresponding dimension, offset by 5.
+     *
+     * For example, the least significant digit represents meters, so area (meters-squared) has a value of 555557.
+     *
+     * Powers above 4 and below -5 can't be represented and won't display properly.
+     */
     private int value;
+
+    /**
+     * The ration between this unit and the standard MGS unit for the quantity being represented.
+     *
+     * For example, feet have a factor of 0.3048 because one foot is equivalent to 0.3048 meters, the standard MGS unit for length.
+     */
     private double factor;
 
     public double getFactor(){
@@ -85,18 +122,47 @@ public class Units {
         this.factor = factor;
     }
 
+    /**
+     * Multiplies two units together.
+     *
+     * @param a the first unit
+     * @param b the second unit
+     * @return the product
+     */
     public static Units multiply(Units a, Units b){
         return new Units(a.value + b.value - 555555, a.factor * b.factor);
     }
 
+    /**
+     * Divides two units.
+     *
+     * @param a the dividend
+     * @param b the divisor
+     * @return the quotient
+     */
     public static Units divide(Units a, Units b){
         return new Units(a.value - b.value + 555555, a.factor / b.factor);
     }
 
+    /**
+     * Raises a unit to a power.
+     *
+     * @param a the unit
+     * @param power the power
+     * @return the result
+     */
     public static Units power(Units a, int power){
         return new Units((a.value - 555555)*power + 555555, Math.pow(a.factor, power));
     }
 
+    /**
+     * Is this unit equal to the other.
+     *
+     * Two units are considered equal if the have the same value, but not necessarily the same factor.
+     *
+     * @param other the other unit
+     * @return Are they equal?
+     */
     public boolean equals(Object other){
 
         if(!(other instanceof Units)) return false;
@@ -110,6 +176,12 @@ public class Units {
     private static final String multiplierMatch = "pnμmckMGT";
     private static final int FACTOR_OFFSET = -12;
 
+    /**
+     * Parses a string into a Units object.
+     *
+     * @param units the string to parse
+     * @return the Units object
+     */
     public static Units parse(String units){
 
         int value = 555555;
@@ -172,6 +244,13 @@ public class Units {
         return new Units(value, factor);
     }
 
+    /**
+     * Converts this Units object to a string.
+     *
+     * If there is a standard unit equivalent to this one, it will output that unit, with the scale appended.
+     *
+     * @return the string
+     */
     public String toString(){
 
         for (String unit : standardUnits.keySet()) {
@@ -225,9 +304,5 @@ public class Units {
     private int getUnitPower(int n){
 
         return ((value / (int)Math.pow(10, n)) % 10) - 5;
-    }
-
-    public static void main(String[] args){
-        Units.parse("kgm/s^2A^4");
     }
 }

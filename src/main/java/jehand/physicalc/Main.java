@@ -22,22 +22,51 @@ package jehand.physicalc;
 
 import java.util.*;
 
+/**
+ * Main class for executing the app.
+ *
+ * Handles input and output, expression evaluation, and help pages.
+ */
+
 public class Main {
 
-    private static final String printPrefix = "--> ";
+    /**
+     * The prefix appended to any output.
+     */
+    private static final String printPrefix =   "";
+
+    /**
+     * The string used tp prompt the user for input.
+     */
+    private static final String commandPrompt = ">>>: ";
+
 
     public static void main(String[] args) throws Exception{
 
         new jehand.physicalc.Main().run();
     }
 
-    private Map<String, String> helpText = ResourceLoader.loadTextResources("/assets/help.txt");
-    private Map<String, String> licenseText = ResourceLoader.loadTextResources("/assets/inAppLicense.txt");
+    /**
+     * HashMap for storing any information text, such as license information and help.
+     * Start elements with a exclamation point (!) to prevent command access.
+     */
+    private Map<String, String> infoText = ResourceLoader.loadTextResources("/assets/info.txt");
 
+    /**
+     * HashMap for storing labelled values.
+     */
     private Map<String, UncertainValue> values = new HashMap<>();
 
+
+    /**
+     * Value used by the "ans" keyword.
+     */
     private UncertainValue storedAnswer = new UncertainValue(0, 0, Units.parse(""));
 
+
+    /**
+     * Method containing main loop of program.
+     */
     public void run(){
 
         // Mathematical constants
@@ -54,21 +83,23 @@ public class Main {
         values.put("m_u", new UncertainValue(0.000000000000000000000001660539066605, 0.0000000003, Units.parse("g"), true, false));
 
         System.out.println("PhysiCalc 1.0.0\n");
-        System.out.println(licenseText.get("onStart"));
-        System.out.println();
-        System.out.println("Type \"help\" for information on usage.\n");
+        System.out.println(infoText.get("!onStart"));
 
         Scanner scan = new Scanner(System.in);
 
         while(true){
 
+            System.out.print(commandPrompt);
+
             String line = scan.nextLine();
 
-            if(licenseText.containsKey(line)){
-                System.out.println(licenseText.get(line));
+            if(infoText.containsKey(line) && !line.startsWith("!")){
+                System.out.println(infoText.get(line));
                 continue;
             }
 
+
+            // list command: lists all stored variables
             if(line.equals("list")){
 
                 System.out.println(printPrefix + "List of all values:");
@@ -80,15 +111,11 @@ public class Main {
                 continue;
             }
 
-            if(helpText.containsKey(line)){
-                System.out.println("\n" + helpText.get(line) + "\n");
-                continue;
-            }
-
             String[] args = line.split(" ");
 
             try {
 
+                // is command: assigns a new variable
                 if (args.length >= 3 && args[1].equals("is")) {
 
                     UncertainValue result = evaluateExpression(Arrays.copyOfRange(args, 2, args.length));
@@ -98,12 +125,14 @@ public class Main {
 
                     System.out.println(printPrefix + result.toString());
 
+                    // clear command: clears a stored variable
                 } else if (args.length == 2 && args[0].equals("clear")) {
 
                     values.remove(args[1]);
 
                     System.out.println(printPrefix + "Deleted Value.");
 
+                    // in command: prints value in given units
                 } else if (args.length > 2 && args[args.length - 2].equals("in")) {
 
                     UncertainValue result = evaluateExpression(Arrays.copyOfRange(args, 0, args.length - 2));
@@ -111,6 +140,7 @@ public class Main {
 
                     System.out.println(printPrefix + result.toString(args[args.length - 1]));
 
+                    // expression: evaluate and print result
                 } else {
 
                     UncertainValue result = evaluateExpression(args);
@@ -119,6 +149,7 @@ public class Main {
                     storedAnswer = result;
                 }
 
+                // error handling
             }catch(IllegalArgumentException e){
                 System.out.println(printPrefix + "Math Error: " + e.getMessage());
             }catch(EmptyStackException e){
@@ -127,10 +158,17 @@ public class Main {
         }
     }
 
+    /**
+     * Eveluates an expression using RPN (Reverse Polish Notation).
+     *
+     * @param args the arguments and operations to evaluate
+     * @return the output of the expression
+     */
     private UncertainValue evaluateExpression(String[] args){
 
         Stack<UncertainValue> numbers = new Stack<>();
 
+        // temp is used to reverse the order elements are taken off the stack to correct operand order.
         UncertainValue temp;
 
         for(int n = 0; n < args.length; n++) {
@@ -156,6 +194,7 @@ public class Main {
                     break;
                 default:
 
+                    // process exponentiation
                     if(args[n].startsWith("^")){
                         numbers.push(numbers.pop().power(Integer.parseInt(args[n].substring(1))));
                         break;
