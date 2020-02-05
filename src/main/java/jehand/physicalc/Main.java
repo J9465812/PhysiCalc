@@ -82,7 +82,7 @@ public class Main {
         values.put("k", new UncertainValue(16021766340000000000.0, 0.0, Units.parse("J/K")));
         values.put("m_u", new UncertainValue(0.000000000000000000000001660539066605, 0.0000000003, Units.parse("g"), true, false));
 
-        System.out.println("PhysiCalc 1.0.0\n");
+        System.out.println("PhysiCalc 1.0.1\n");
         System.out.println(infoText.get("!onStart"));
 
         Scanner scan = new Scanner(System.in);
