@@ -48,7 +48,7 @@ public class Units {
     /**
      * Table of all units with information. Currently inaccessible.
      */
-    private static final String unitDescriptions;
+    public static final String unitDescriptions;
 
     /**
      * Regex with all unit abbreviations.
@@ -184,6 +184,10 @@ public class Units {
      */
     public static Units parse(String units){
 
+        if(units.equals("")){
+            units = " ";
+        }
+
         int value = 555555;
         double factor = 1;
 
@@ -198,6 +202,10 @@ public class Units {
         Pattern pattern = Pattern.compile("(([" + multiplierMatch + "]?)(" + unitMatch + ")(?:\\^([2-9]))?)*");
 
         for(int n = 0; n < nd.length; n++){
+            
+            if(nd[n].equals("1")){
+                continue;
+            }
 
             String remainingUnits = nd[n];
 

@@ -120,6 +120,6 @@ public class ResourceLoader {
             values.add(line.split(","));
         }
 
-        return values.toArray(new String[5][values.size()]);
+        return values.toArray(new String[values.size()][values.get(0).length]);
     }
 }
