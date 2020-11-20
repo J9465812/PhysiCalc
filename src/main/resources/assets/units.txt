@@ -8,8 +8,8 @@ N,Newtons,Unit of force or weight 1N = 0.2248lbs,555366,1000,T
 Pa,Pascals,Unit of pressure equal to 1N per square-meter,555364,1000,T
 J,Joules,Unit of energy equivalent to 1Nm,555367,1000,T
 W,Watt,Power unit equal to 1J/s,555267,1000,T
-V,Volt,unit of electrical potential,554267,1000,T
-Ohm,Ohms,units of electrical resistance,553267,1000,T
+V,Volt,Unit of electrical potential,554267,1000,T
+Ohm,Ohms,Units of electrical resistance,553267,1000,T
 T,Teslas,Unit of electric flux: the total magnetic field through a surface,554365,1000,T
 Wb,Webers,Unit of flux density: 1Wb = 1T*m^2,554367,1000,T
 F,Farads,Unit of capacitance,557943,0.001,T
