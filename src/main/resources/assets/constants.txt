@@ -1,0 +1,16 @@
+pi,Pi,The ratio of a circle's radius to its circumference.,3.141592653589793238462643,0.0, ,
+L,Avogadro's Constant,The ratio of an element's atomic mass to its mass in grams,6.02214076E23,0.0, ,
+k,Boltzmann's Constant,Relates a gas's kinetic energy to it's temperature.,1.380649E-23,0.0,J/K
+e,Elementary Charge,The charge of a single electron.,1.602176634E-19,0.0,C
+G,Gravitational Constant,Constant in Newton's Law of Universal Gravitation,6.6743015E-11,2.2E-5,m^3/kgs^2
+h,Planck's Constant,The ratio of a photon's energy to its wavelength,6.62607015E-34,0.0,Js
+c,Speed of Light,The speed of light in a vacuum. Used in many equations such as E=mc^2.,2.99792458E8,0.0,m/s
+ε0,Vacuum Electric Permeability,Don't ask... https://en.wikipedia.org/wiki/Vacuum_permittivity,8.854187812813E-12,1.5E-10,F/m
+μ0,Vacuum Magnetic Permeability,Again... https://en.wikipedia.org/wiki/Vacuum_permeability,1.2566370621219E-6,1.5E-10,N/A^2
+me,Electron Mass,The mass of a single electron.,9.109383701528E-31,3.0E-10,kg
+mp,Proton Mass,The mass of a single proton.,1.6726219236951E-27,3.1E-10,kg
+α,Fine-Structure Constant,Still don't ask... https://en.wikipedia.org/wiki/Fine-structure_constant,7.297352569311E-3,1.5E-10, ,
+KJ,Josephson Constant,Constant of proportionality for the Josephson Effect,483597.848484E9,0,1/sV
+R,Molar Gas Constant,Alternative to Boltzmann's Constant when using moles,8.314426618,0,J/K
+RInf,Rydberg Constant,Why do I even bother... https://en.wikipedia.org/wiki/Rydberg_constant,10973731.56816021,1.9E-12,1/m
+RK,von Klitzing constant,Parameter for the Hall Effect,25812.80745,0,Ohm

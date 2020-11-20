@@ -33,29 +33,57 @@ public class Main {
     /**
      * The prefix appended to any output.
      */
-    private static final String printPrefix =   "";
+    private static final String printPrefix = "";
 
     /**
      * The string used tp prompt the user for input.
      */
     private static final String commandPrompt = ">>>: ";
 
+    /**
+     * HashMap for storing any information text, such as license information and help.
+     * Start elements with a exclamation point (!) to prevent command access.
+     */
+    private static final Map<String, String> infoText = ResourceLoader.loadTextResources("/assets/info.txt");
 
-    public static void main(String[] args) throws Exception{
+    /**
+     * HashMap storing the built-in physical constants.
+     */
+    private static final Map<String, UncertainValue> physicalConstants = new HashMap<>();
+
+    private static final String constantsDescriptions;
+
+    static{
+
+        String[][] constants = ResourceLoader.loadCSVObjectFormat("/assets/constants.txt");
+        StringBuilder description = new StringBuilder();
+
+        description.append(String.format("%38s  %-10s%-35s%-15s%s", "Constant:", "Symbol:", "Value:", "Units:", "Description:"));
+
+        for(int n = 0; n < constants.length; n++){
+
+            physicalConstants.put(constants[n][0], new UncertainValue(Double.parseDouble(constants[n][3]), Double.parseDouble(constants[n][4]), Units.parse(constants[n][5]), true, false));
+
+            description.append(String.format("\n%38s  %-10s%-35s%-15s%s", constants[n][1], constants[n][0], constants[n][3] + "±" + constants[n][4], constants[n][5], constants[n][2]));
+        }
+        
+        constantsDescriptions = description.toString();
+    }
+
+    public static void main(String[] args){
 
         new jehand.physicalc.Main().run();
     }
 
     /**
-     * HashMap for storing any information text, such as license information and help.
-     * Start elements with a exclamation point (!) to prevent command access.
+     * HashMap for storing labelled values.
      */
-    private Map<String, String> infoText = ResourceLoader.loadTextResources("/assets/info.txt");
+    private Map<String, UncertainValue> values = new HashMap<>();
 
     /**
      * HashMap for storing labelled values.
      */
-    private Map<String, UncertainValue> values = new HashMap<>();
+    private Map<String, String[]> locks = new HashMap<>();
 
 
     /**
@@ -69,20 +97,6 @@ public class Main {
      */
     public void run(){
 
-        // Mathematical constants
-        values.put("pi", new UncertainValue(Math.PI, 0.000000000000000001, Units.parse("")));
-
-        // Physical Constants
-
-        values.put("c", new UncertainValue(299792458.0, 0.0, Units.parse("m/s")));
-        values.put("h", new UncertainValue(0.000000000000000000000000000000000662607015, 0.0, Units.parse("Js")));
-        values.put("G", new UncertainValue(0.000000000066743015, 0.000022, Units.parse("m^3/kgs^2"), true, false));
-        values.put("L", new UncertainValue(602214076000000000000000.0, 0.0, Units.parse("")));
-        values.put("e", new UncertainValue(0.0000000000000000001602176634, 0.0, Units.parse("C")));
-        values.put("k", new UncertainValue(16021766340000000000.0, 0.0, Units.parse("J/K")));
-        values.put("m_u", new UncertainValue(0.000000000000000000000001660539066605, 0.0000000003, Units.parse("g"), true, false));
-
-        System.out.println("PhysiCalc 1.0.1\n");
         System.out.println(infoText.get("!onStart"));
 
         Scanner scan = new Scanner(System.in);
@@ -92,6 +106,7 @@ public class Main {
             System.out.print(commandPrompt);
 
             String line = scan.nextLine();
+            String[] args = line.split(" ");
 
             if(infoText.containsKey(line) && !line.startsWith("!")){
                 System.out.println(infoText.get(line));
@@ -100,18 +115,36 @@ public class Main {
 
 
             // list command: lists all stored variables
-            if(line.equals("list")){
+            if(args[0].equals("list")){
+                
+                if(args.length < 2){
+                    System.out.println();
+                }
+                
+                switch(args[1]){
+                    
+                    case "values":
+                        System.out.println(printPrefix + "List of all values:");
+                        System.out.printf("%-40s%-20s%n", "Name:", "Value:");
 
-                System.out.println(printPrefix + "List of all values:");
+                        Set<String> keys = values.keySet();
+                        Iterator<String> iterator = keys.stream().sorted().iterator();
 
-                for (String label : values.keySet()) {
-                    System.out.println("\t\t" + label + " : " + values.get(label).toString());
+                        while(iterator.hasNext()) {
+                            String label = iterator.next();
+                            System.out.printf("%-40s%-20s%n", label, values.get(label).toString());
+                        }
+                        break;
+                    case "constants":
+                        System.out.println(constantsDescriptions);
+                        break;
+                    case "units":
+                        System.out.println(Units.unitDescriptions);
+                        break;
                 }
 
                 continue;
             }
-
-            String[] args = line.split(" ");
 
             try {
 
@@ -140,6 +173,15 @@ public class Main {
 
                     System.out.println(printPrefix + result.toString(args[args.length - 1]));
 
+                    // lock command: lock a label to an expression
+                } else if (args.length > 3 && args[0].equals("lock") && args[2].equals("to")) {
+
+                    String[] expression = Arrays.copyOfRange(args, 3, args.length);
+
+                    locks.put(args[1], expression);
+
+                    System.out.println(printPrefix + "Lock set successfully.");
+
                     // expression: evaluate and print result
                 } else {
 
@@ -154,6 +196,8 @@ public class Main {
                 System.out.println(printPrefix + "Math Error: " + e.getMessage());
             }catch(EmptyStackException e){
                 System.out.println(printPrefix + "Math Error: The expression couldn't be evaluated due to lack of numbers. (Make sure all operations have the required number of inputs.)");
+            }catch(StackOverflowError e){
+                System.out.println(printPrefix + "Math Error: Detected a loop in expression evaluation. (Make sure your locks don't reference each other in a loop.)");
             }
         }
     }
@@ -200,8 +244,18 @@ public class Main {
                         break;
                     }
 
+                    if(physicalConstants.containsKey(args[n])){
+                        numbers.push(physicalConstants.get(args[n]));
+                        break;
+                    }
+
                     if(values.containsKey(args[n])){
                         numbers.push(values.get(args[n]));
+                        break;
+                    }
+
+                    if(locks.containsKey(args[n])){
+                        numbers.push(evaluateExpression(locks.get(args[n])));
                         break;
                     }
 

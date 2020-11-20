@@ -25,7 +25,7 @@ help list:List of help pages, it is recommended that you read them in the order 
 #    units: Units tell you what you are measuring, and allow you to express your results in more meaningful terms.||
 #    number formatting: The past few pages have all discussed different aspects of formatting numbers. There are many ways you can write your numbers in PhysiCalc, this page shows a few different combinations.||
 #    expression format: There are several guidelines you need to follow for your expressions to parse properly.||
-#    the list command:
+#    the list command:||
 #  Advanced:||
 #    labels - Labels allow you to easily store and reuse values you have calculated.||
 #    expression debugging - Sometimes error messages aren't caused by what they seem to be. Here are a few problems that you might run into writing expressions.||
@@ -61,14 +61,18 @@ help units:Units are the means of denoting what a value represents. There are li
 #If you need a measurement in specific units. You can use the "in" keyword: 1m/s in mi/hr will convert 1 meter per second into miles per hour. You can only convert to a unit that denotes the same type of quantity. Trying to do otherwise results in the
 # calculator giving an error message.
 
+help number formatting:
 
 
 
 
 
 
-
-!onStart:PhysiCalc, Copyright (C) 2020,  Joseph E. Hand|
+!onStart:||
+#  /''/  /  /  /  /  /'''  /  /'''  /'''  /     /'''|
+# /__/  /--/  /__/  /__   /  /     /__/  /     /|
+#/     /  /    /   ___/  /  /___  /  /  /___  /___|
+#||Copyright (C) 2020,  Joseph E. Hand|
 #This program comes with ABSOLUTELY NO WARRANTY; for details type 'warranty disclaimer'.|
 #This is free software, and you are welcome to redistribute it|
 #under certain conditions; type 'term and conditions' for details.||
