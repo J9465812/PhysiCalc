@@ -128,7 +128,7 @@ public class Main {
                         System.out.printf("%-40s%-20s%n", "Name:", "Value:");
 
                         Set<String> keys = values.keySet();
-                        Iterator<String> iterator = keys.stream().sorted().iterator();
+                        Iterator<String> iterator = keys.stream().sorted(String.CASE_INSENSITIVE_ORDER).iterator();
 
                         while(iterator.hasNext()) {
                             String label = iterator.next();
