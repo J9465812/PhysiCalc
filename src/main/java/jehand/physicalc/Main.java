@@ -80,6 +80,11 @@ public class Main {
      */
     private Map<String, UncertainValue> values = new HashMap<>();
 
+    /**
+     * HashMap for storing labelled values.
+     */
+    private Map<String, String[]> locks = new HashMap<>();
+
 
     /**
      * Value used by the "ans" keyword.
@@ -168,6 +173,15 @@ public class Main {
 
                     System.out.println(printPrefix + result.toString(args[args.length - 1]));
 
+                    // lock command: lock a label to an expression
+                } else if (args.length > 3 && args[0].equals("lock") && args[2].equals("to")) {
+
+                    String[] expression = Arrays.copyOfRange(args, 3, args.length);
+
+                    locks.put(args[1], expression);
+
+                    System.out.println(printPrefix + "Lock set successfully.");
+
                     // expression: evaluate and print result
                 } else {
 
@@ -182,6 +196,8 @@ public class Main {
                 System.out.println(printPrefix + "Math Error: " + e.getMessage());
             }catch(EmptyStackException e){
                 System.out.println(printPrefix + "Math Error: The expression couldn't be evaluated due to lack of numbers. (Make sure all operations have the required number of inputs.)");
+            }catch(StackOverflowError e){
+                System.out.println(printPrefix + "Math Error: Detected a loop in expression evaluation. (Make sure your locks don't reference each other in a loop.)");
             }
         }
     }
@@ -235,6 +251,11 @@ public class Main {
 
                     if(values.containsKey(args[n])){
                         numbers.push(values.get(args[n]));
+                        break;
+                    }
+
+                    if(locks.containsKey(args[n])){
+                        numbers.push(evaluateExpression(locks.get(args[n])));
                         break;
                     }
 
