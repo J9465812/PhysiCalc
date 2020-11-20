@@ -4,7 +4,7 @@ PhysiCalc is a calculating tool designed for physicists that has many capabiliti
 ## Execution
 PhysiCalc must be run from the command line or terminal.
 
-To run it open the command line or terminal and navigate to the folder containing the .jar file and type the command **java -jar physicalc-1.0.1.jar**. 
+To run it open the command line or terminal and navigate to the folder containing the .jar file and type the command **java -jar physicalc-x.x.x.jar**. 
 You may also use a script as described below. To terminate the program, press ctrl+c.
 
 ## Bash Script and Batch File
