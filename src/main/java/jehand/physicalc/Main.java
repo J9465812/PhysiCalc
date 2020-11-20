@@ -120,9 +120,14 @@ public class Main {
                     
                     case "values":
                         System.out.println(printPrefix + "List of all values:");
-                        System.out.println(String.format("%-40s%-20s", "Name:", "Value:"));
-                        for (String label : values.keySet()) {
-                            System.out.println(String.format("%-40s%-20s", label, values.get(label).toString()));
+                        System.out.printf("%-40s%-20s%n", "Name:", "Value:");
+
+                        Set<String> keys = values.keySet();
+                        Iterator<String> iterator = keys.stream().sorted().iterator();
+
+                        while(iterator.hasNext()) {
+                            String label = iterator.next();
+                            System.out.printf("%-40s%-20s%n", label, values.get(label).toString());
                         }
                         break;
                     case "constants":
