@@ -160,7 +160,7 @@ public class UncertainValue {
             factor = Double.parseDouble(unitSplit[1]);
         }
 
-        return (value/factor) + "±" + (uncertainty/factor) + " " + unitSplit[0];
+        return (value/factor) + "+-" + (uncertainty/factor) + " " + unitSplit[0];
     }
 
     /**
