@@ -41,6 +41,11 @@ public class Main {
     private static final String commandPrompt = ">>>: ";
 
     /**
+     * List of forbidden label/lock names
+     */
+    private static final String[] keywords = {"in", "is", "lock", "to", "list", "units", "constants", "labels", "ans", "x", "*", "+", "-", "/", "^"};
+
+    /**
      * HashMap for storing any information text, such as license information and help.
      * Start elements with a exclamation point (!) to prevent command access.
      */
@@ -123,7 +128,7 @@ public class Main {
                 
                 switch(args[1]){
                     
-                    case "values":
+                    case "labels":
                         System.out.println(printPrefix + "List of all values:");
                         System.out.printf("%-40s%-20s%n", "Name:", "Value:");
 
@@ -151,19 +156,34 @@ public class Main {
                 // is command: assigns a new variable
                 if (args.length >= 3 && args[1].equals("is")) {
 
-                    UncertainValue result = evaluateExpression(Arrays.copyOfRange(args, 2, args.length));
+                    if(Arrays.stream(keywords).anyMatch((s) -> s.equals(args[0]))){
+                        System.out.println("That name is reserved");
+                        continue;
+                    }
 
-                    values.put(args[0], result);
+                    if (locks.containsKey(args[0])) {
+                        System.out.println("There is a lock with that name, clear it first");
+                        continue;
+                    }
+
+                    UncertainValue result = evaluateExpression(Arrays.copyOfRange(args, 2, args.length));
                     storedAnswer = result;
+                    values.put(args[0], result);
 
                     System.out.println(printPrefix + result.toString());
 
                     // clear command: clears a stored variable
                 } else if (args.length == 2 && args[0].equals("clear")) {
 
-                    values.remove(args[1]);
+                    if(values.containsKey(args[1]) || locks.containsKey(args[1])) {
 
-                    System.out.println(printPrefix + "Deleted Value.");
+                        values.remove(args[1]);
+                        locks.remove(args[1]);
+
+                        System.out.println(printPrefix + "Deleted label/lock: " + args[1]);
+                    } else {
+                        System.out.println(printPrefix + "That label/lock doesn't exist");
+                    }
 
                     // in command: prints value in given units
                 } else if (args.length > 2 && args[args.length - 2].equals("in")) {
@@ -176,11 +196,21 @@ public class Main {
                     // lock command: lock a label to an expression
                 } else if (args.length > 3 && args[0].equals("lock") && args[2].equals("to")) {
 
+                    if(Arrays.stream(keywords).anyMatch((s) -> s.equals(args[1]))){
+                        System.out.println("That name is reserved");
+                        continue;
+                    }
+
+                    if (values.containsKey(args[1])) {
+                        System.out.println("There is a label with that name, clear it first");
+                        continue;
+                    }
+
                     String[] expression = Arrays.copyOfRange(args, 3, args.length);
 
                     locks.put(args[1], expression);
 
-                    System.out.println(printPrefix + "Lock set successfully.");
+                    System.out.println(printPrefix + "Lock set successfully: " + args[1]);
 
                     // expression: evaluate and print result
                 } else {
