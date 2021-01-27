@@ -72,7 +72,7 @@ help number formatting:
 #  /''/  /  /  /  /  /'''  /  /'''  /'''  /     /'''|
 # /__/  /--/  /__/  /__   /  /     /__/  /     /|
 #/     /  /    /   ___/  /  /___  /  /  /___  /___|
-#||Copyright (C) 2020,  Joseph E. Hand|
+#||Copyright (C) 2021,  Joseph E. Hand|
 #This program comes with ABSOLUTELY NO WARRANTY; for details type 'warranty disclaimer'.|
 #This is free software, and you are welcome to redistribute it|
 #under certain conditions; type 'term and conditions' for details.||
