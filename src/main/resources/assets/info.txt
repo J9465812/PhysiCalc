@@ -9,7 +9,7 @@
 #under certain conditions; type 'term and conditions' for details.||
 #The complete GNU 3.0 license can be found here:|
 #  https://www.gnu.org/licenses/gpl-3.0.en.html||
-#A Wiki with a guide on its usage can be found here:|
+#A Wiki with a guide on this program's usage can be found here:|
 #https://github.com/J9465812/PhysiCalc/wiki/Tutorial|
 
 terms and conditions:||TERMS AND CONDITIONS||
