@@ -19,6 +19,7 @@ C,Coloumbs,Unit of charge,556655,1,T
 mins,Minutes,60 seconds,555655,60,F
 hrs,Hours,60 minutes,555655,3600,F
 days,Days,1 solar day: the average time it takes for the sun to move from one zenith to the next (approximately 24 hours),555655,86400,F
+yrs,Years,365 days,555655,31536000,F
 L,Liters,100cm^3,555558,0.001,F
 tonnes,Metric Tonnes,2000kg,555565,1000000,F
 atm,Atmospheres,Average pressure at sea level,555364, 101325000,F

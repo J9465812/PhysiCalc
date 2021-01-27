@@ -17,12 +17,5 @@ Place both of these files in the same directory.
 Double-clicking on the batch file will automatically open the command prompt and run the program.
 
 ### Macintosh
-To run on Mac, download the physicalc-x.x.x.jar and PhysiCalcBash.
-Place both files on the desktop, and double-click on the bash file
-to run PhysiCalc.
-
-*NOTE: This might not work because of Apple's built-in protections
-thinking it is malware. I am trying to find a way around it. Until then, just use the command line directly as described under Execution.*
-
-## Opening the help page
-After launching PhysiCalc, type "help" and press enter. PhysiCalc should bring up instructions to get started.
+Due to Apple's increasing strict limits on downloaded executables. I will not provide a bash script for PhysiCalc.
+It can still be run from the terminal as shown above provided you have java installed.
