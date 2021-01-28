@@ -16,30 +16,31 @@ F,Farads,Unit of capacitance,557943,0.001,T
 H,Henries,Unit if inductance: the tendency of a coil to produce flux 1H = 1Wb/A,553367,0.001,T
 S,Siemens,Unit of conductance: resistance to electric flow,557843,0.001,T
 C,Coloumbs,Unit of charge,556655,1,T
-mn,Minutes,60 seconds,555655,60,F
-hr,Hours,60 minutes,555655,3600,F
+mins,Minutes,60 seconds,555655,60,F
+hrs,Hours,60 minutes,555655,3600,F
 days,Days,1 solar day: the average time it takes for the sun to move from one zenith to the next (approximately 24 hours),555655,86400,F
+yrs,Years,365 days,555655,31536000,F
 L,Liters,100cm^3,555558,0.001,F
-tonne,Metric Tonnes,2000kg,555565,1000000,F
+tonnes,Metric Tonnes,2000kg,555565,1000000,F
 atm,Atmospheres,Average pressure at sea level,555364, 101325000,F
 ly,Light Years,The distance light travels in one year,555556,9460700000000000,F
 lh,Light Hours,The distance light travels in one hour,555556,1079252848800,F
 lm,Light Minutes,The distance light travels in one minute,555556,17987547480,F
 ls,Light Seconds,The distance light travels in one second,555556,299792458,F
-yr,Years,The time it takes Earth to complete one orbit,555655,31556952,F
-pc,Parsecs,The distance at which the apparent paralax due to the Earths orbit is 1 arcsecond (approximately 3.26 light years),555556,30857000000000000,F
+yrs,Years,The time it takes Earth to complete one orbit,555655,31556952,F
+Parsecs,Parsecs,The distance at which the apparent paralax due to the Earths orbit is 1 arcsecond (approximately 3.26 light years),555556,30857000000000000,F
 AU,Astronomical Units,The semimajor axis of the Earth's orbit,555556,149597870700,F
-EarthM,Earth Masses,The mass of the Earth,555565,5972370000000000000000000000,F
-SolM,Solar Masses,The mass of the Sun,555565,1988470000000000000000000000000000,F
-EarthR,Earth Radii,The equatorial radius of the Earth,555556,6378100,F
-SolR,Solar Radii,The radius of the Sun,555556,695700000,F
+EarthMasses,Earth Masses,The mass of the Earth,555565,5972370000000000000000000000,F
+SolMasses,Solar Masses,The mass of the Sun,555565,1988470000000000000000000000000000,F
+EarthRadii,Earth Radii,The equatorial radius of the Earth,555556,6378100,F
+SolRadii,Solar Radii,The radius of the Sun,555556,695700000,F
 lbs,Pounds,Imperial unit of force/weight (approximately 4.4N),555366,4448.2216282509,F
 in,Inches,Small Unit of Length in Imperial System,555556,0.0254,F
 ft,Feet,12in,555556,0.3048,F
 yd,Yards,3ft,555556,0.9144,F
 mi,Miles,5280ft,555556,1609.344,F
 psi,Pounds per square-inch,Unit of pressure equal to one pound per square inch,555364,6894757,F
-acre,Acres,Imperial unit of area,555557,4046.8564224,F
+Acres,Acres,Imperial unit of area,555557,4046.8564224,F
 c,Cups,Imperial unit of Volume,555558,0.00023658824,F
 pt,Pints,2 cups,555558,0.00047317648,F
 qt,Quarts,2 pints,555558,0.00094635296,F

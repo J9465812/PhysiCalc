@@ -160,7 +160,7 @@ public class UncertainValue {
             factor = Double.parseDouble(unitSplit[1]);
         }
 
-        return (value/factor) + "±" + (uncertainty/factor) + " " + unitSplit[0];
+        return (value/factor) + "+-" + (uncertainty/factor) + " " + unitSplit[0];
     }
 
     /**
@@ -177,7 +177,7 @@ public class UncertainValue {
             throw new IllegalArgumentException("Can not convert to incompatible units:" + u);
         }
 
-        return (value/u.getFactor()) + "±" + (uncertainty/u.getFactor()) + " " + units;
+        return (value/u.getFactor()) + "+-" + (uncertainty/u.getFactor()) + " " + units;
     }
 
     private static final String parseRegex = "(-?[0-9.]+)(?:(?:[x*]10\\^|E)(-?[0-9]+))?(?:(?:\\+-|±)([0-9.]+)(?:(?:[x*]10\\^|E)(-?[0-9]+))?)?([a-zA-Z0-9/^]*)";
