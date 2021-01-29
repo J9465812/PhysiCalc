@@ -118,8 +118,12 @@ public class Main {
                 continue;
             }
 
+            // quit command
+            if(args[0].equals("quit")){
+                System.exit(0);
+            }
 
-            // list command: lists all stored variables
+            // list command
             if(args[0].equals("list")){
                 
                 if(args.length < 2){
